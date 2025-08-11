@@ -81,8 +81,8 @@ class AdvancedResumeApp {
         }
 
         document.querySelectorAll('a[href^="#"]').forEach(link => {
-            link.addEventListener('click', (e) => {
-                e.preventDefault();
+        link.addEventListener('click', (e) => {
+            e.preventDefault();
                 const targetId = link.getAttribute('href').slice(1);
                 const targetSection = document.getElementById(targetId);
                 
@@ -94,9 +94,9 @@ class AdvancedResumeApp {
                         navToggle.classList.remove('active');
                         navLinks.classList.remove('active');
                     }
-                }
-            });
+            }
         });
+    });
 
         this.setupScrollSpy();
     }
@@ -108,9 +108,9 @@ class AdvancedResumeApp {
 
     setupScrollSpy() {
         const sections = document.querySelectorAll('section[id]');
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
                     this.updateActiveNavLink(entry.target.id);
                 }
             });
@@ -390,8 +390,8 @@ class AdvancedResumeApp {
         
         modalOverlay.style.opacity = '1';
         modalOverlay.style.visibility = 'visible';
-        
-        setTimeout(() => {
+    
+    setTimeout(() => {
             const modalContent = modalOverlay.querySelector('.modal-content');
             if (modalContent) modalContent.style.transform = 'scale(1)';
         }, 50);

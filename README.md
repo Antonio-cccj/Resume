@@ -1,85 +1,129 @@
 # Jun Chu - Quantitative Trader Resume Website
 
-A professional, interactive resume website designed specifically for quantitative trading positions.
+Professional, interactive resume website designed for quantitative trading positions.
 
-## Features
+## 🚀 Quick Start
 
-### 🎨 Design
-- Modern, clean interface optimized for finance professionals
-- Responsive design that works on all devices
-- Professional color scheme (blues and gradients)
-- Print-friendly layout
+### First Time Setup
+1. **Deploy to GitHub**: Double-click `deploy.bat`
+2. **Enter repository URL** when prompted
+3. **Enable GitHub Pages** in repository settings
 
-### 🚀 Interactive Elements
-- Smooth scroll animations
-- Hover effects on all interactive elements
-- Expandable timeline items for detailed information
-- Skill tags with interactive tooltips
-- Dark mode toggle
-- Print functionality
+### Daily Updates
+1. **Edit your resume files** (index.html, styles.css, etc.)
+2. **Sync to GitHub**: Double-click `sync-to-github.bat`
+3. **Website updates automatically** in 2-5 minutes
 
-### 📱 Responsive Design
-- Mobile-first approach
-- Tablet and desktop optimized
-- Print-optimized styles
-- High contrast mode support
-
-### ⚡ Performance
-- Lazy loading for better performance
-- Optimized animations
-- Fast loading times
-- SEO-friendly structure
-
-## File Structure
+## 📁 File Structure
 
 ```
 WEB CV/
-├── index.html          # Main HTML structure with complete resume content
-├── styles.css          # Professional CSS styling and animations
-├── script.js           # Interactive JavaScript functionality
-└── README.md           # This documentation file
+├── index.html              # Main resume page
+├── styles.css              # Professional styling
+├── script.js               # Interactive features
+├── deploy.bat              # Initial GitHub deployment
+├── sync-to-github.bat      # Daily sync to GitHub
+├── deploy-guide.md         # Detailed deployment guide
+├── README.md               # This file
+├── robots.txt              # SEO optimization
+└── sitemap.xml             # Search engine sitemap
 ```
 
-## Usage
+## ✨ Features
 
-1. Open `index.html` in any modern web browser
-2. Use keyboard shortcuts:
-   - `Ctrl/Cmd + P` to print
-   - `Home` to scroll to top
-   - `End` to scroll to bottom
-3. Interactive features:
-   - Click skill tags for more information
-   - Hover over timeline items for enhanced details
-   - Use the print button for PDF generation
-   - Toggle dark mode with the moon/sun icon
+- **Modern Design**: Professional layout with animations
+- **Responsive**: Perfect on mobile, tablet, and desktop
+- **Interactive**: Click skills for detailed information
+- **SEO Optimized**: Search engine friendly
+- **Print Ready**: Clean PDF export
+- **Fast Loading**: Optimized performance
 
-## Browser Compatibility
+## 🔄 Updating Your Resume
 
-- Chrome 60+
-- Firefox 55+
-- Safari 12+
-- Edge 79+
+### Content Updates
+- **Personal Info**: Edit contact details in `index.html`
+- **Experience**: Update work history and projects
+- **Skills**: Modify technical skills and levels
+- **Styling**: Customize colors and layout in `styles.css`
 
-## Accessibility Features
+### Sync Process
+1. Make your changes
+2. Run `sync-to-github.bat`
+3. Choose commit message or use default
+4. Wait for website to update (2-5 minutes)
 
-- Keyboard navigation support
-- Screen reader friendly
-- High contrast mode support
-- Reduced motion support for users with vestibular disorders
-- Proper ARIA labels and semantic HTML
+## 🌐 Website URLs
 
-## Technical Notes
+After deployment, your resume will be available at:
+- **GitHub Pages**: `https://antonio-ccj.github.io/Resume/`
+- **Custom Domain**: `https://junchuresume.com` (if configured)
 
-- Built with vanilla HTML, CSS, and JavaScript (no frameworks required)
-- Uses modern CSS Grid and Flexbox for layout
-- Implements Intersection Observer API for scroll animations
-- Font Awesome icons for visual enhancement
-- Google Fonts (Inter) for professional typography
+## 🛠️ Troubleshooting
 
-## Customization
+### Common Issues
 
-The website is fully customizable through CSS variables and can be easily modified for different color schemes or layouts while maintaining the professional appearance suitable for quantitative finance positions.
+**Sync conflicts?**
+- Choose option 2 in sync script to force push your changes
+
+**Website not updating?**
+- Wait 5 minutes for GitHub Pages to refresh
+- Check GitHub repository for successful commit
+
+**First deployment failed?**
+- Verify GitHub credentials
+- Ensure repository name is correct
+- Check internet connection
+
+### Support Files
+- `deploy-guide.md` - Complete deployment instructions
+- Contact GitHub support for platform issues
+
+## 🎯 Professional Features
+
+### For Quantitative Trading
+- **Skills showcase**: ML models, databases, programming
+- **Interactive demos**: Click skills for details
+- **Performance metrics**: Highlighted achievements
+- **Professional design**: Suitable for finance industry
+
+### Technical Specifications
+- **Built with**: Vanilla HTML, CSS, JavaScript
+- **No dependencies**: Works everywhere
+- **Mobile first**: Responsive design
+- **Print optimized**: Professional PDF output
+
+## 📈 Customization
+
+### Color Scheme
+Edit CSS variables in `styles.css`:
+```css
+:root {
+    --primary-color: #1e40af;
+    --accent-color: #d4af37;
+    /* Customize colors here */
+}
+```
+
+### Content Sections
+All content is in `index.html`:
+- Personal information
+- Education background
+- Work experience
+- Skills and technologies
+- Achievements and awards
+
+## 🔒 Privacy & Security
+
+- **No tracking**: No analytics by default
+- **Static files**: No server-side processing
+- **Your control**: All code is visible and editable
+- **Professional use**: Designed for job applications
 
 ---
 
-*This resume website is optimized for quantitative trader positions and showcases technical skills, financial experience, and academic achievements in an interactive, professional format.*
+**Quick Actions:**
+- 🚀 Deploy: `deploy.bat`
+- 🔄 Update: `sync-to-github.bat`
+- 📖 Guide: `deploy-guide.md`
+
+Your professional resume website is ready to impress hiring managers in quantitative finance!
