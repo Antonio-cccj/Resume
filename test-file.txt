@@ -1,3 +1,0 @@
-This is a test file to verify sync functionality.
-Created at: 2024-12-19
-Purpose: Test sync-to-github.bat script
