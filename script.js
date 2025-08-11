@@ -432,6 +432,61 @@ class AdvancedResumeApp {
                 description: 'Expert-level SQL skills for financial database management and large-scale data extraction.',
                 level: 92,
                 applications: ['Database design', 'Complex query optimization', 'Data pipeline automation', 'Performance tuning']
+            },
+            'LSTM (Long Short-Term Memory)': {
+                description: 'Deep learning expertise in LSTM networks for time series forecasting and sequential pattern recognition in financial markets.',
+                level: 85,
+                applications: ['Stock price prediction', 'Market volatility forecasting', 'Trading signal generation', 'Risk pattern recognition']
+            },
+            'SVM (Support Vector Machine)': {
+                description: 'Proficient in Support Vector Machines for classification and regression tasks in quantitative finance.',
+                level: 82,
+                applications: ['Market regime detection', 'Credit risk classification', 'Portfolio optimization', 'Anomaly detection']
+            },
+            'Logistic Regression': {
+                description: 'Classical statistical method for binary and multiclass classification problems in financial modeling.',
+                level: 90,
+                applications: ['Credit risk assessment', 'Market direction prediction', 'Portfolio classification', 'Binary outcome modeling']
+            },
+            'Decision Trees': {
+                description: 'Interpretable machine learning algorithm for both classification and regression tasks.',
+                level: 88,
+                applications: ['Rule-based trading strategies', 'Risk factor analysis', 'Feature importance ranking', 'Model interpretability']
+            },
+            'Neural Networks': {
+                description: 'Deep learning architectures for complex pattern recognition and non-linear modeling.',
+                level: 83,
+                applications: ['Complex market pattern recognition', 'Non-linear factor modeling', 'Advanced signal processing', 'Deep feature extraction']
+            },
+            'PCA (Principal Component Analysis)': {
+                description: 'Dimensionality reduction technique for factor analysis and risk management in quantitative finance.',
+                level: 87,
+                applications: ['Factor dimensionality reduction', 'Risk factor analysis', 'Portfolio optimization', 'Noise reduction in financial data']
+            },
+            'SQLite': {
+                description: 'Expertise in SQLite for lightweight, fast financial data storage and retrieval in trading systems.',
+                level: 90,
+                applications: ['Local backtesting databases', 'Real-time data caching', 'Strategy development', 'Performance analytics']
+            },
+            'PostgreSQL': {
+                description: 'Advanced open-source relational database management with strong SQL compliance and extensibility.',
+                level: 85,
+                applications: ['Enterprise data warehousing', 'Complex financial analytics', 'Large-scale data processing', 'Advanced query optimization']
+            },
+            'MySQL': {
+                description: 'Proficient in MySQL for reliable, scalable database solutions in financial applications.',
+                level: 83,
+                applications: ['Web application backends', 'Financial data storage', 'Transaction processing', 'Data replication and backup']
+            },
+            'Linear Regression': {
+                description: 'Fundamental statistical modeling technique for quantitative analysis and factor modeling.',
+                level: 93,
+                applications: ['Factor model construction', 'Risk attribution analysis', 'Beta calculation', 'Performance attribution']
+            },
+            'Ridge Regression': {
+                description: 'Regularized regression technique for robust factor modeling with multicollinearity handling.',
+                level: 88,
+                applications: ['Alpha factor regularization', 'Risk model stability', 'Feature selection', 'Overfitting prevention']
             }
         };
         
