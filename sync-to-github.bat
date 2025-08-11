@@ -12,90 +12,109 @@ if not exist ".git" (
     exit /b 1
 )
 
-:: Get current timestamp
-for /f "tokens=2 delims==" %%a in ('wmic OS Get localdatetime /value') do set "dt=%%a"
-set "timestamp=%dt:~0,4%-%dt:~4,2%-%dt:~6,2% %dt:~8,2%:%dt:~10,2%:%dt:~12,2%"
+:: Get current timestamp (without wmic for better compatibility)
+for /f "tokens=1-3 delims=/ " %%a in ('echo %date%') do set "today=%%c-%%a-%%b"
+for /f "tokens=1-2 delims=: " %%a in ('echo %time%') do set "now=%%a:%%b"
+set "timestamp=%today% %now%"
 
-echo [1/5] Pulling latest changes from GitHub...
-git pull origin main --no-edit
-if %errorlevel% neq 0 (
-    echo Warning: Pull failed. This might be due to conflicts.
-    echo Choose an option:
-    echo [1] Try to resolve automatically
-    echo [2] Force push your changes (overwrites remote)
-    echo [3] Cancel and resolve manually
-    set /p choice="Enter choice (1-3): "
-    
-    if "%choice%"=="1" (
-        echo Attempting automatic resolution...
-        git pull origin main --strategy=recursive -X ours
-    ) else if "%choice%"=="2" (
-        goto :force_push
-    ) else (
-        echo Please resolve conflicts manually and run this script again.
-        pause
-        exit /b 1
+echo [1/4] Fetching latest changes from GitHub...
+git fetch origin main > nul 2>&1
+
+:: Check if we're behind remote
+git rev-list HEAD..origin/main --count > temp_count.txt 2>nul
+set /p behind=<temp_count.txt
+del temp_count.txt
+
+if "%behind%" GTR "0" (
+    echo Remote has %behind% new commits. Merging changes...
+    git merge origin/main --no-edit --strategy=recursive -X ours > nul 2>&1
+    if %errorlevel% neq 0 (
+        echo Merge failed. Attempting to stash and reapply...
+        git stash
+        git pull origin main --rebase
+        git stash pop > nul 2>&1
     )
 )
 
-echo [2/5] Checking for changes...
-git status --porcelain > nul 2>&1
-if %errorlevel% equ 0 (
-    for /f %%i in ('git status --porcelain') do goto :has_changes
-    echo No changes detected.
+echo [2/4] Checking for local changes...
+git status --porcelain > temp_status.txt 2>&1
+set has_changes=0
+for /f "tokens=*" %%i in (temp_status.txt) do set has_changes=1
+del temp_status.txt
+
+if %has_changes% equ 0 (
+    echo No local changes detected.
+    
+    :: Check if we have unpushed commits
+    git rev-list origin/main..HEAD --count > temp_ahead.txt 2>nul
+    set /p ahead=<temp_ahead.txt
+    del temp_ahead.txt
+    
+    if "%ahead%" GTR "0" (
+        echo You have %ahead% unpushed commits. Pushing now...
+        git push origin main
+        if %errorlevel% equ 0 (
+            echo Push successful!
+        ) else (
+            echo Push failed. Please check your connection.
+        )
+    ) else (
+        echo Everything is up to date!
+    )
     goto :end
 )
 
-:has_changes
-echo [3/5] Adding all changes...
-git add .
+echo [3/4] Committing changes...
+git add -A
+git commit -m "Update resume website - %timestamp%" > nul 2>&1
 
-echo [4/5] Creating commit...
-echo Enter commit message (or press Enter for default):
-set /p commit_msg="Commit message: "
-if "%commit_msg%"=="" (
-    set "commit_msg=Update resume website - %timestamp%"
-)
-git commit -m "%commit_msg%"
+echo [4/4] Pushing to GitHub...
+git push origin main 2>temp_error.txt
 
-echo [5/5] Pushing to GitHub...
-git push origin main
-goto :check_result
-
-:force_push
-echo [3/5] Adding all changes...
-git add .
-echo [4/5] Creating commit...
-git commit -m "Force update: Resume website - %timestamp%"
-echo [5/5] Force pushing to GitHub...
-git push origin main --force
-
-:check_result
 if %errorlevel% equ 0 (
     echo.
     echo ========================================
     echo    Sync Complete Successfully!
     echo ========================================
     echo.
-    echo Your resume website has been updated!
-    echo GitHub Pages will refresh in 2-5 minutes.
+    echo Your changes have been pushed to GitHub.
+    echo GitHub Pages will update in 2-5 minutes.
     echo.
     echo Website URLs:
     echo - GitHub Pages: https://antonio-ccj.github.io/Resume/
-    echo - Custom Domain: https://junchuresume.com (if DNS configured)
+    echo - Custom Domain: https://junchuresume.com
     echo.
 ) else (
-    echo.
-    echo ========================================
-    echo    Sync Failed!
-    echo ========================================
-    echo.
-    echo Possible solutions:
-    echo 1. Check your internet connection
-    echo 2. Verify GitHub credentials
-    echo 3. Try running deploy.bat to reset the repository
-    echo.
+    :: Check if it's a non-fast-forward error
+    findstr /C:"non-fast-forward" temp_error.txt > nul
+    if %errorlevel% equ 0 (
+        echo Push rejected: Remote has changes. Auto-resolving...
+        git pull origin main --rebase
+        git push origin main
+        if %errorlevel% equ 0 (
+            echo Successfully resolved and pushed!
+        ) else (
+            echo Auto-resolution failed. Manual intervention needed.
+        )
+    ) else (
+        echo.
+        echo ========================================
+        echo    Sync Failed!
+        echo ========================================
+        echo.
+        type temp_error.txt
+        echo.
+        echo Possible solutions:
+        echo 1. Check your internet connection
+        echo 2. Verify GitHub credentials
+        echo 3. Run: git push origin main --force
+        echo.
+    )
 )
 
+if exist temp_error.txt del temp_error.txt
+
 :end
-pause
+echo.
+echo Press any key to exit...
+pause > nul
