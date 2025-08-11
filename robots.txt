@@ -1,0 +1,8 @@
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://junchuresume.com/sitemap.xml
+
+# SEO optimization
+Crawl-delay: 1
